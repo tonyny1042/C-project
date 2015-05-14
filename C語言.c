@@ -68,7 +68,6 @@ int main()
             printf("\n\n密碼錯誤，請重新登入....\n\n");
             continue;
         }
-    break;
     }
      
     printf("\n\n系統即將關閉，歡迎下次繼續使用 BYE BYE\n");
