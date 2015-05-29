@@ -1,79 +1,137 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-enum state {EXIT, RUN, WRONG_NAME, WRONG_CODE};
+void menu();
+void signin();
+void order();
+void end();
+void summary();
+
+int sum1=0;
+int sum2=0;
+int sum3=0;
+int sum4=0;
+int sum5=0;
+
 
 int main()
 {
-    // 宣告預設的帳號及密碼
-    char userID[20] = "tonyny1042";
-    char userCODE[20] = "123456";
-    // 宣告暫存使用者輸入的帳號及密碼
-    char inputName[20];
-    char inputCode[20];
-    // 宣告暫存成功登入的帳號及密碼
-    char whoName[20];
-    char whoCode[20];
-    // 宣告儲存目前狀態
-    int state;
-    state = RUN;
-    printf("Welcome to the Beverage ordering system!!\n");
+    printf("歡迎使用本系統!! \n");
     
-    while (1) 
-    {
-        printf("請輸入帳號: ");    
-        scanf("%s", inputName);
-         
-        //"exit" 為內建指令，用來離開迴圈
-        if (!strcmp(inputName, "exit")) 
-        {
-            state = EXIT;
-            printf("\n您將要離開本登入程式....\n\n");
-            break;
-        }
-         
-        // 判斷使用者輸入的帳號是否相同，若相同才再繼續要求輸入密碼
-        if (!strcmp(inputName, userID)) 
-        {
-            printf("請輸入密碼: ");
-            scanf("%s", inputCode);
-             
-            if (!strcmp(inputCode, userCODE))
-            {
-                strcpy(whoName, inputName);
-                strcpy(whoCode, inputCode);
-                 
-                printf("\n\n哈囉， %s ， 歡迎使用本登入程式...\n\n", whoName);
-                state = RUN;
-            }
-            else 
-            {
-                state = WRONG_CODE;
-            }
-        }
-        else
-        {
-            state = WRONG_NAME;
-        }
-         
-        // 判斷目前狀態，顯示提示訊息
-        if (state == RUN) {
-            continue;
-        }
-        else if (state == WRONG_NAME) {
-            printf("\n\n沒有這名使用者喔！請重新登入....\n\n");
-            continue;
-        }
-        else if (state == WRONG_CODE) {
-            printf("\n\n密碼錯誤，請重新登入....\n\n");
-            continue;
-        }
-    }
-     
-    printf("\n\n系統即將關閉，歡迎下次繼續使用 BYE BYE\n");
+    signin();
+    
+    menu();
+    
+    order();
+    
+    end();
     
     system("pause"); 
     return 0;
+}
+
+void signin()
+{
+     
+}
+
+void menu()
+{
+     printf("             MENU               \n");
+     printf("===============================\n ");
+     printf("編號    飲料    中杯$   大杯$\n");
+     printf("====== ======== ======= =======\n"); 
+     printf("  1      紅茶     15      20\n");
+     printf("  2      綠茶     15      20\n");
+     printf("  3      青茶     15      20\n");
+     printf("  4      麥茶     15      20\n");
+     printf("  5      奶茶     20      25\n\n");  
+     //printf("備註: +波霸、珍珠、仙草凍 皆+5元\n");  
+     //printf("      +布丁、椰果 皆+10元\n");
+}
+
+void order()
+{
+     int num;
+     int count1=0;
+     int count2=0;
+
+     printf("輸入飲料編號: ");
+     scanf("%d", &num);
+     if(num == 1){
+        printf("紅茶中杯需要幾杯: ");
+        scanf("%d", &count1);
+        printf("紅茶大杯需要幾杯: "); 
+        scanf("%d", &count2);
+        printf("總共 %d 杯中杯紅茶及 %d 杯大杯紅茶\n", count1, count2);
+        sum1 = count1*15 + count2*20;
+        printf("紅茶共 %d 元\n\n", sum1);
+        printf("還需要點哪些飲料，若不用則輸入 0 若要則");
+        order();
+     }
+     else if(num == 2){
+        printf("綠茶中杯需要幾杯: ");
+        scanf("%d", &count1);
+        printf("綠茶大杯需要幾杯: "); 
+        scanf("%d", &count2);
+        printf("總共 %d 杯中杯綠茶及 %d 杯大杯綠茶\n", count1, count2);
+        sum2 = count1*15 + count2*20;
+        printf("綠茶共 %d 元\n\n", sum2); 
+        printf("還需要點哪些飲料，若不用則輸入 0 若要則");
+        order();
+     }
+     else if(num == 3){
+        printf("青茶中杯需要幾杯: ");
+        scanf("%d", &count1);
+        printf("青茶大杯需要幾杯: "); 
+        scanf("%d", &count2);
+        printf("總共 %d 杯中杯青茶及 %d 杯大杯青茶\n", count1, count2);
+        sum3 = count1*15 + count2*20;
+        printf("青茶共 %d 元\n\n", sum3); 
+        printf("還需要點哪些飲料，若不用則輸入 0 若要則");
+        order();
+     } 
+     else if(num == 4){
+        printf("麥茶中杯需要幾杯: ");
+        scanf("%d", &count1);
+        printf("麥茶大杯需要幾杯: "); 
+        scanf("%d", &count2);
+        printf("總共 %d 杯中杯麥茶及 %d 杯大杯麥茶\n", count1, count2);
+        sum4 = count1*15 + count2*20;
+        printf("麥茶共 %d 元\n\n", sum4);
+        printf("還需要點哪些飲料，若不用則輸入 0 若要則");
+        order(); 
+     } 
+     else if(num == 5){
+        printf("奶茶中杯需要幾杯: ");
+        scanf("%d", &count1);
+        printf("奶茶大杯需要幾杯: "); 
+        scanf("%d", &count2);
+        printf("總共%d杯中杯奶茶及%d杯大杯奶茶\n", count1, count2);
+        sum5 = count1*20 + count2*25;
+        printf("奶茶共%d元\n\n", sum5); 
+        printf("還需要點哪些飲料，若不用則輸入 0 若要則");
+        order();
+     }
+     else if(num == 0){
+        summary();
+     }         
+}
+
+void summary()
+{
+     int sumall;
+     
+     sumall = sum1+sum2+sum3+sum4+sum5;
+     
+     printf("此次訂單總合為 %d 元\n", sumall);
+}
+
+void end()
+{
+     printf("謝謝使用本系統，掰掰!!");  
+      
 }
     
     
